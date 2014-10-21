@@ -31,7 +31,7 @@ public class ExecTest{
 		
 		for(ProdutoDM pro : getProdList ){
 			
-			JOptionPane.showMessageDialog(null, pro.getDescricao());
+			JOptionPane.showMessageDialog(null, "TESTE "+pro.getDescricao());
 			
 		}
 		

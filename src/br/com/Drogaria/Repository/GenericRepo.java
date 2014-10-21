@@ -1,6 +1,7 @@
 package br.com.Drogaria.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -48,5 +49,4 @@ public abstract class GenericRepo<T> {
 		Query query = em.createQuery("FROM " + entityClass.getName());
 		return query.getResultList();
 	}
-
 }
