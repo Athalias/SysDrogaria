@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/modeloSistema.xhtml">
+
+	<ui:define name="menu">
+		<ui:include src="/includes/menuPrincipal.xhtml" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="frmProdListagem">
+			<p:dataTable id="tblProduto"
+				emptyMessage="Nenhum registro encontrado"
+				value="#{MBProduto.listProd}" var="listProd"
+				filteredValue="#{MBProduto.listProdFiltrados}" paginator="true"
+				rows="8">
+
+				<f:facet name="header">
+					Produtos - Listagem
+				</f:facet>
+
+				<p:column headerText="Código" sortBy="#{listProd.codigo}"
+					filterBy="#{listProd.codigo}">
+					<p:outputLabel value="#{listProd.codigo}" />
+				</p:column>
+
+				<p:column headerText="Descrição" sortBy="#{listProd.descricao}"
+					filterBy="#{listProd.descricao}">
+					<p:outputLabel value="#{listProd.descricao}" />
+				</p:column>
+
+				<p:column headerText="Quantidade" sortBy="#{listProd.quantidade}"
+					filterBy="#{listProd.quantidade}">
+					<p:outputLabel value="#{listProd.quantidade}" />
+				</p:column>
+
+				<p:column headerText="Fabricante"
+					sortBy="#{listProd.codigoFabricante.descricao}"
+					filterBy="#{listProd.codigoFabricante.descricao}">
+					<p:outputLabel value="#{listProd.codigoFabricante.descricao}" />
+				</p:column>
+
+				<p:column headerText="Preço" sortBy="#{listProd.preco}"
+					filterBy="#{listProd.preco}">
+					<p:outputLabel value="#{listProd.preco}" />
+				</p:column>
+
+				<p:column headerText="Opções">
+
+					<p:commandButton icon="ui-icon-trash"
+						oncomplete="PF('dlgProdExcluir').show();"
+						update=":frmProdExcluir:pnlProdExcluir">
+
+						<f:setPropertyActionListener target="#{MBProduto.produtos}"
+							value="#{listProd}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-pencil"
+						oncomplete="PF('dlgProdEditar').show();"
+						update=":frmProdEditar:pnlProdEditar">
+
+						<f:setPropertyActionListener target="#{MBProduto.produtos}"
+							value="#{listProd}" />
+					</p:commandButton>
+
+				</p:column>
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo"
+						actionListener="#{MBProduto.prepararNovo()}"
+						oncomplete="PF('dlgProdNovo').show();"
+						update=":frmProdNovo:pnlProdNovo" />
+				</f:facet>
+			</p:dataTable>
+		</h:form>
+
+		<p:dialog widgetVar="dlgProdNovo" closable="false" draggable="false"
+			resizable="false" modal="true" appendTo="@(body)"
+			header="Produtos - Novo">
+			<h:form id="frmProdNovo">
+				<h:panelGrid id="pnlProdNovo" columns="2">
+
+					<h:outputLabel value="Descrição" />
+					<h:inputText size="30" maxlength="40"
+						value="#{MBProduto.produtos.descricao}" />
+
+					<h:outputLabel value="Quantidade" />
+					<h:inputText size="30" maxlength="40"
+						value="#{MBProduto.produtos.quantidade}" />
+
+					<h:outputLabel value="Preço" />
+					<h:inputText size="30" maxlength="40"
+						value="#{MBProduto.produtos.preco}" />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Gravar"
+						actionListener="#{MBProduto.novo()}"
+						oncomplete="PF('dlgProdNovo').hide();"
+						update=":frmProdListagem:tblProduto :msgGlobal" />
+					<p:commandButton value="Cancelar"
+						oncomplete="PF('dlgProdNovo').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog widgetVar="dlgProdExcluir" closable="false"
+			draggable="false" resizable="false" modal="true" appendTo="@(body)"
+			header="Produtos - Exclusão">
+
+			<h:form id="frmProdExcluir">
+				<h:panelGrid id="pnlProdExcluir" columns="2">
+
+					<p:outputLabel value="Código:" />
+					<h:outputText value="#{MBProduto.produtos.codigo}" />
+
+					<p:outputLabel value="Descrição:" />
+					<h:outputText value="#{MBProduto.produtos.descricao}" />
+
+					<p:outputLabel value="Quantidade:" />
+					<h:outputText value="#{MBProduto.produtos.quantidade}" />
+
+					<p:outputLabel value="Prço:" />
+					<h:outputText value="#{MBProduto.produtos.preco}" />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Excluir"
+						actionListener="#{MBProduto.excluir()}"
+						oncomplete="PF('dlgProdExcluir').hide();"
+						update=":frmProdListagem:tblProduto :msgGlobal" />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dlgProdExcluir').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog widgetVar="dlgProdEditar" closable="false" draggable="false"
+			resizable="false" modal="true" appendTo="@(body)"
+			header="Produtos - Editar">
+
+			<h:form id="frmProdEditar">
+				<h:panelGrid id="pnlProdEditar" columns="2">
+
+					<p:outputLabel value="Código:" />
+					<h:outputText value="#{MBProduto.produtos.codigo}" />
+
+					<p:outputLabel value="Descrição:" />
+					<h:inputText value="#{MBProduto.produtos.descricao}" size="30"
+						maxlength="50" />
+
+					<p:outputLabel value="Quantidade:" />
+					<h:inputText value="#{MBProduto.produtos.quantidade}" size="30"
+						maxlength="50" />
+
+					<p:outputLabel value="Preço:" />
+					<h:inputText value="#{MBProduto.produtos.preco}" size="30"
+						maxlength="50" />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Editar"
+						actionListener="#{MBProduto.editar()}"
+						oncomplete="PF('dlgProdEditar').hide();"
+						update=":frmProdListagem:tblProduto :msgGlobal" />
+					<p:commandButton value="Cancelar"
+						onclick="PF('dlgProdEditar').hide();" />
+				</h:panelGrid>
+
+			</h:form>
+
+		</p:dialog>
+
+		<h:form>
+			<p:panel header="Validate">
+				<h:panelGrid columns="4" cellpadding="5">
+					<h:outputLabel for="text" value="Text: (Change)" />
+					<p:inputText id="text" value="#{validationView.text}"
+						required="true">
+						<f:validateLength minimum="2" maximum="5" />
+						<p:clientValidator />
+					</p:inputText>
+					<p:message for="text" display="icon" />
+					<h:outputText value="#{validationView.text}" />
+
+					<h:outputLabel for="integer" value="Integer: (Keyup)" />
+					<p:inputText id="integer" value="#{validationView.integer}">
+						<p:clientValidator event="keyup" />
+					</p:inputText>
+					<p:message for="integer" display="icon" />
+					<h:outputText value="#{validationView.integer}" />
+				</h:panelGrid>
+
+				<p:commandButton value="Save" ajax="false" icon="ui-icon-check"
+					validateClient="true" />
+			</p:panel>
+		</h:form>
+
+
+
+	</ui:define>
+
+</ui:composition>

@@ -19,21 +19,9 @@ public class ExecTest{
 		ProdutoRP prp = new ProdutoRP();
 		f.setCodigo(23);
 		f.setDescricao("Fabricante 03 generic");
-		//pr.setCodigo(4);
-		pr.setDescricao("Produto 04 para SELECT");
-		pr.setQuantidade(20);
-		pr.setPreco(5.50);
-		pr.setCodigoFabricante(f);
-		prp.Insert(pr);
 		
+		fbrp.Delete(f);
 		
-		List<ProdutoDM> getProdList = prp.Select();
-		
-		for(ProdutoDM pro : getProdList ){
-			
-			JOptionPane.showMessageDialog(null, "TESTE "+pro.getDescricao());
-			
-		}
 		
 	}
 }

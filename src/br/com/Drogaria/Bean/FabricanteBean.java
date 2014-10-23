@@ -6,17 +6,18 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.model.ListDataModel;
 
 import br.com.Drogaria.Domain.FabricanteDM;
 import br.com.Drogaria.Repository.FabricanteRP;
 import br.com.Drogaria.Repository.FabricanteSelect;
+import br.com.Drogaria.Util.JSFUtil;
 
 @ManagedBean(name = "MBFabricante")
 @ViewScoped
 public class FabricanteBean {
 	private FabricanteDM fabricante;
-	private ListDataModel<FabricanteDM> itens;
+	private List<FabricanteDM> itens;
+	private List<FabricanteDM> itensFiltrados;
 	
 	public FabricanteDM getFabricante() {
 		return fabricante;
@@ -26,19 +27,26 @@ public class FabricanteBean {
 		this.fabricante = fabricante;
 	}
 	
-	public ListDataModel<FabricanteDM> getItens() {
+	public List<FabricanteDM> getItens() {
 		return itens;
 	}
 
-	public void setItens(ListDataModel<FabricanteDM> itens) {
+	public void setItens(List<FabricanteDM> itens) {
 		this.itens = itens;
+	}
+
+	public List<FabricanteDM> getItensFiltrados() {
+		return itensFiltrados;
+	}
+
+	public void setItensFiltrados(List<FabricanteDM> itensFiltrados) {
+		this.itensFiltrados = itensFiltrados;
 	}
 
 	@PostConstruct
 	public void prepararPesquisa(){
 		FabricanteSelect fbs = new FabricanteSelect();
-		List<FabricanteDM> lista = fbs.listar();
-		itens = new ListDataModel<FabricanteDM>(lista);
+		itens = fbs.listar();
 	}
 	
 	public void prepararNovo(){
@@ -48,8 +56,30 @@ public class FabricanteBean {
 	public void novo(){
 		FabricanteRP rp = new FabricanteRP();
 		rp.Insert(fabricante);	
+		
 		FabricanteSelect fbs = new FabricanteSelect();
-		List<FabricanteDM> lista = fbs.listar();
-		itens = new ListDataModel<FabricanteDM>(lista);
+		itens = fbs.listar();
+
+		JSFUtil.addMensagemSucesso("Registro salvo com Sucesso!"); 
+	}
+
+	public void excluir(){
+		FabricanteRP rp = new FabricanteRP();
+		rp.Delete(fabricante);
+		
+		FabricanteSelect fbs = new FabricanteSelect();
+		itens = fbs.listar();
+
+		JSFUtil.addMensagemSucesso("Registro removido com sucesso");
+	}
+		
+	public void editar(){
+		FabricanteRP rp = new FabricanteRP();
+		rp.Update(fabricante);
+		
+		FabricanteSelect fbs = new FabricanteSelect();
+		itens = fbs.listar();
+
+		JSFUtil.addMensagemSucesso("Registro alterado com sucesso");
 	}
 }
