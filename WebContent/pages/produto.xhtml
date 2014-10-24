@@ -11,6 +11,10 @@
 		<ui:include src="/includes/menuPrincipal.xhtml" />
 	</ui:define>
 
+	<ui:define name="menu_2">
+		<ui:include src="/includes/menuPrincipal2.xhtml" />
+	</ui:define>
+
 	<ui:define name="conteudo">
 		<h:form id="frmProdListagem">
 			<p:dataTable id="tblProduto"
@@ -85,7 +89,8 @@
 				<h:panelGrid id="pnlProdNovo" columns="2">
 
 					<h:outputLabel value="Descrição" />
-					<h:inputText size="30" maxlength="40"
+					<h:inputText size="30" maxlength="40" required="true"
+						requiredMessage="Informe a Descrição"
 						value="#{MBProduto.produtos.descricao}" />
 
 					<h:outputLabel value="Quantidade" />
@@ -95,6 +100,15 @@
 					<h:outputLabel value="Preço" />
 					<h:inputText size="30" maxlength="40"
 						value="#{MBProduto.produtos.preco}" />
+
+					<h:outputLabel value="Fabricante:" />
+
+					<p:autoComplete id="acMinLength" 
+						value="#{MBFabricante.fabricante}"
+						completeMethod="#{MBFabricante.completaNome()}" 
+						var="fab" itemLabel="#{fab.descricao}" itemValue="fab"
+						forceSelection="true"
+						effect="fade" />
 
 				</h:panelGrid>
 
@@ -182,28 +196,25 @@
 			<p:panel header="Validate">
 				<h:panelGrid columns="4" cellpadding="5">
 					<h:outputLabel for="text" value="Text: (Change)" />
-					<p:inputText id="text" value="#{validationView.text}"
-						required="true">
+					<p:inputText id="text" value="#{validar.text}" required="true">
 						<f:validateLength minimum="2" maximum="5" />
 						<p:clientValidator />
 					</p:inputText>
 					<p:message for="text" display="icon" />
-					<h:outputText value="#{validationView.text}" />
+					<h:outputText value="#{validar.text}" />
 
 					<h:outputLabel for="integer" value="Integer: (Keyup)" />
-					<p:inputText id="integer" value="#{validationView.integer}">
+					<p:inputText id="integer" value="#{validar.integer}">
 						<p:clientValidator event="keyup" />
 					</p:inputText>
 					<p:message for="integer" display="icon" />
-					<h:outputText value="#{validationView.integer}" />
+					<h:outputText value="#{validar.integer}" />
 				</h:panelGrid>
 
 				<p:commandButton value="Save" ajax="false" icon="ui-icon-check"
 					validateClient="true" />
 			</p:panel>
 		</h:form>
-
-
 
 	</ui:define>
 

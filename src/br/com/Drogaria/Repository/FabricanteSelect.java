@@ -16,4 +16,11 @@ public class FabricanteSelect {
 		List<FabricanteDM> listfab = q.getResultList();
 		return listfab; 
 	}
+	
+	public List<FabricanteDM> listarByName(String nome){
+		Query q = em.createQuery("select a from FabricanteDM a where a.descricao like :descricao");
+		q.setParameter("descricao","%"+nome+"%");
+		List<FabricanteDM> listfab = q.getResultList();
+		return listfab; 
+	}
 }

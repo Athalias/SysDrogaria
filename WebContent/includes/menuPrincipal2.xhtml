@@ -6,11 +6,22 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 	<h:form>
-		<p:menubar>
-			<f:facet name="options">
-				<p:inputText style="margin-right:10px" placeholder="Localizar" />
-				<p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
-			</f:facet>
-		</p:menubar>
+		<p:panelMenu style="width:173px">
+			
+			<p:submenu label="Arquivo">
+				<p:menuitem value="Sair"/>
+			</p:submenu>
+			
+			<p:submenu label="Cadastros">
+				<p:menuitem value="Fabricantes" outcome="/pages/fabricante.xhtml"/>
+				<p:menuitem value="Produtos" outcome="/pages/produto.xhtml"/>
+			</p:submenu>
+			
+			<p:submenu label="Sobre">
+				<p:menuitem value="Ajuda"/>
+			</p:submenu>
+		
+		
+		</p:panelMenu>
 	</h:form>
 </ui:composition>

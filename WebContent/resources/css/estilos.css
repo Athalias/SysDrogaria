@@ -12,3 +12,12 @@
 .ui-widget, .ui-widget .ui-widget {
 	font-size: 12px !important;
 }
+
+table {
+	width: 200px;
+}
+
+
+table tr td {
+	height: 1px;
+}

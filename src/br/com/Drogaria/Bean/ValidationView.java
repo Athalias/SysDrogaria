@@ -1,8 +1,10 @@
 package br.com.Drogaria.Bean;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
-@ManagedBean
+@ManagedBean(name="validar")
+@ViewScoped
 public class ValidationView {
 
 	private String text;

@@ -18,15 +18,15 @@ public class FabricanteBean {
 	private FabricanteDM fabricante;
 	private List<FabricanteDM> itens;
 	private List<FabricanteDM> itensFiltrados;
-	
+
 	public FabricanteDM getFabricante() {
 		return fabricante;
 	}
-	
+
 	public void setFabricante(FabricanteDM fabricante) {
 		this.fabricante = fabricante;
 	}
-	
+
 	public List<FabricanteDM> getItens() {
 		return itens;
 	}
@@ -44,42 +44,48 @@ public class FabricanteBean {
 	}
 
 	@PostConstruct
-	public void prepararPesquisa(){
+	public void prepararPesquisa() {
 		FabricanteSelect fbs = new FabricanteSelect();
 		itens = fbs.listar();
 	}
-	
-	public void prepararNovo(){
+
+	public void prepararNovo() {
 		fabricante = new FabricanteDM();
 	}
-	
-	public void novo(){
+
+	public void novo() {
 		FabricanteRP rp = new FabricanteRP();
-		rp.Insert(fabricante);	
-		
+		rp.Insert(fabricante);
+
 		FabricanteSelect fbs = new FabricanteSelect();
 		itens = fbs.listar();
 
-		JSFUtil.addMensagemSucesso("Registro salvo com Sucesso!"); 
+		JSFUtil.addMensagemSucesso("Registro salvo com Sucesso!");
 	}
 
-	public void excluir(){
+	public void excluir() {
 		FabricanteRP rp = new FabricanteRP();
 		rp.Delete(fabricante);
-		
+
 		FabricanteSelect fbs = new FabricanteSelect();
 		itens = fbs.listar();
 
 		JSFUtil.addMensagemSucesso("Registro removido com sucesso");
 	}
-		
-	public void editar(){
+
+	public void editar() {
 		FabricanteRP rp = new FabricanteRP();
 		rp.Update(fabricante);
-		
+
 		FabricanteSelect fbs = new FabricanteSelect();
 		itens = fbs.listar();
 
 		JSFUtil.addMensagemSucesso("Registro alterado com sucesso");
 	}
+	
+	public void completaNome(String query) {
+		FabricanteSelect fbs = new FabricanteSelect();
+		fbs.listarByName(query); 
+	}
+
 }
