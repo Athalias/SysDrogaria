@@ -7,7 +7,7 @@
 
 	<!-- Página principal -->
 	<welcome-file-list>
-		<welcome-file>faces/pages/principal.xhtml</welcome-file>
+		<welcome-file>faces/pages/login.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<!-- Configuração do jsf -->
@@ -36,6 +36,6 @@
 	<!-- definição do tema do primefaces -->
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>home</param-value>
+		<param-value>humanity</param-value>
 	</context-param>
 </web-app>

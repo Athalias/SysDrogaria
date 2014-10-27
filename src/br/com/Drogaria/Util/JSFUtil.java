@@ -17,7 +17,7 @@ public class JSFUtil {
 	}
 	
 	public static void addAlertMessage(String mensagem){
-		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, mensagem, mensagem);
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, mensagem, mensagem);
 		FacesContext contexto = FacesContext.getCurrentInstance();
 		contexto.addMessage(null, msg);
 	}
