@@ -1,5 +1,8 @@
 package br.com.Drogaria.Util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -15,10 +18,18 @@ public class TableConverter implements Converter {
 	public Object getAsObject(FacesContext arg0, UIComponent arg1, String arg2) {
 		
 		FabricanteSelect fbs = new FabricanteSelect();
-		FabricanteDM fabricante = (FabricanteDM) fbs.listarByName(arg2); 
+		FabricanteDM fab = new FabricanteDM();
+		List<FabricanteDM> lstFabricante = fbs.listarByName(arg2);  
 		
-		return fabricante;
-	}
+		for(FabricanteDM fbdm :lstFabricante){
+	
+			fab = fbdm; 
+			}
+			return fab; 
+		}
+		//FabricanteDM fabricante = (FabricanteDM) lstFabricante;
+		
+	
 
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {

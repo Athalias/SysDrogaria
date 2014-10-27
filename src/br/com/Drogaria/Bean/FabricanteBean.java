@@ -83,9 +83,4 @@ public class FabricanteBean {
 		JSFUtil.addMensagemSucesso("Registro alterado com sucesso");
 	}
 	
-	public void completaNome(String query) {
-		FabricanteSelect fbs = new FabricanteSelect();
-		fbs.listarByName(query); 
-	}
-
 }

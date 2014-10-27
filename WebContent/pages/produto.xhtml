@@ -103,12 +103,16 @@
 
 					<h:outputLabel value="Fabricante:" />
 
-					<p:autoComplete id="acMinLength" 
-						value="#{MBFabricante.fabricante}"
-						completeMethod="#{MBFabricante.completaNome()}" 
-						var="fab" itemLabel="#{fab.descricao}" itemValue="fab"
-						forceSelection="true"
-						effect="fade" />
+
+					<h:panelGroup>
+						<p:autoComplete id="fabricante" var="fab"
+							value="#{MBProduto.produtos.codigoFabricante}" itemValue="#{fab}"
+							itemLabel="#{fab.descricao}" converter="TabConverter"
+							completeMethod="#{MBProduto.completaNome}" effect="fade">
+							<p:ajax update=":frmProdListagem:tblProduto :msgGlobal " listener="#{MBProduto.completaNome}"/>
+						</p:autoComplete>
+						<p:watermark value="Pesquise pelo nome" for="fabricante" />
+					</h:panelGroup>
 
 				</h:panelGrid>
 
