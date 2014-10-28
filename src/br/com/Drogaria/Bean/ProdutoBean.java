@@ -82,9 +82,6 @@ public class ProdutoBean {
 	public List<FabricanteDM> completaNome(String query) {
 		FabricanteSelect fbs = new FabricanteSelect();
 		List<FabricanteDM> lsfabricantes = fbs.listarByName(query);
-		if (lsfabricantes.size() == 0) {
-			JSFUtil.addAlertMessage("Esse cliente não foi encontrado");
-		}
 		return lsfabricantes;
 	}
 }

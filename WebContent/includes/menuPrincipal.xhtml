@@ -9,8 +9,14 @@
 		<p:menubar>
 			<f:facet name="options">
 				<p:inputText style="margin-right:10px" placeholder="Localizar" />
-				<p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+				<p:commandButton type="button" value="Logout" icon="ui-icon-extlink"
+					oncomplete="logout(xhr, status, args);" />
 			</f:facet>
 		</p:menubar>
 	</h:form>
+	<script type="text/javascript">
+    function logout(xhr, status, args) {
+            location.href="http://localhost:8080/SysDrogaria";
+    }
+</script>
 </ui:composition>

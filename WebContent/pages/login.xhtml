@@ -11,29 +11,42 @@
 
 		<div align="center">
 
-			<p:dialog header="Login" widgetVar="dlg" resizable="false"
+			<p:dialog header="Logar" widgetVar="dlg" resizable="false"
 				visible="true">
 
 				<h:form>
-					<!--  <p:growl id="growl" sticky="true" showDetail="true" life="3000" />-->
 					<h:panelGrid columns="2" cellpadding="5">
-						<h:outputLabel for="username" value="Username:" />
-						<p:inputText id="username" value="#{loginBean.username}"
-							required="true" label="username" />
+						<h:outputLabel for="login" value="Login:" />
+						<p:inputText id="login" value="#{autenticacaoBean.usuarioLogado.login}"
+							required="true" label="login" />
 
-						<h:outputLabel for="password" value="Password:" />
-						<p:password id="password" value="#{loginBean.password}"
-							required="true" label="password" />
+						<h:outputLabel for="senha" value="Senha:" />
+						<p:password id="senha" value="#{autenticacaoBean.usuarioLogado.senha}"
+							required="true" label="senha" />
 
 						<f:facet name="footer">
 							<p:commandButton value="Login" update=":msgGlobal"
-								actionListener="#{loginBean.login}"
-								oncomplete="handleLoginRequest(xhr, status, args);" />
+								actionListener="#{autenticacaoBean.autenticar}"
+								oncomplete="handleLoginRequest(xhr, status, args);"/>
+									
 						</f:facet>
 					</h:panelGrid>
 				</h:form>
-				
+
 			</p:dialog>
+
+			<script type="text/javascript">
+    function handleLoginRequest(xhr, status, args) {
+        if(args.validationFailed || !args.loggedIn) {
+            PF('dlg').jq.effect("shake", {times:5}, 100);
+        }
+        else {
+            PF('dlg').hide();
+            location.href="http://localhost:8080/SysDrogaria/pages/index.html";
+            $('#loginLink').fadeOut();
+        }
+    }
+</script>
 
 
 		</div>

@@ -107,6 +107,7 @@
 					<h:panelGroup>
 						<p:autoComplete id="fabricante" var="fab"
 							value="#{MBProduto.produtos.codigoFabricante}" itemValue="#{fab}"
+							minQueryLength="3"
 							itemLabel="#{fab.descricao}" converter="TabConverter"
 							completeMethod="#{MBProduto.completaNome}" effect="fade">
 							<p:ajax update=":frmProdListagem:tblProduto :msgGlobal " listener="#{MBProduto.completaNome}"/>
@@ -195,30 +196,6 @@
 			</h:form>
 
 		</p:dialog>
-
-		<h:form>
-			<p:panel header="Validate">
-				<h:panelGrid columns="4" cellpadding="5">
-					<h:outputLabel for="text" value="Text: (Change)" />
-					<p:inputText id="text" value="#{validar.text}" required="true">
-						<f:validateLength minimum="2" maximum="5" />
-						<p:clientValidator />
-					</p:inputText>
-					<p:message for="text" display="icon" />
-					<h:outputText value="#{validar.text}" />
-
-					<h:outputLabel for="integer" value="Integer: (Keyup)" />
-					<p:inputText id="integer" value="#{validar.integer}">
-						<p:clientValidator event="keyup" />
-					</p:inputText>
-					<p:message for="integer" display="icon" />
-					<h:outputText value="#{validar.integer}" />
-				</h:panelGrid>
-
-				<p:commandButton value="Save" ajax="false" icon="ui-icon-check"
-					validateClient="true" />
-			</p:panel>
-		</h:form>
 
 	</ui:define>
 
