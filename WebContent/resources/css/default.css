@@ -143,4 +143,6 @@ a:hover {
 .icon-arrow-left:before {
 	content: "\f060";
 }
-
+header{
+	height: 100px;
+}

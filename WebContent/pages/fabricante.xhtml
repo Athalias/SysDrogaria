@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="/templates/modeloSistema.xhtml">
-<!-- 
+	<!-- 
 	<ui:define name="menu">
 		<ui:include src="/includes/menuPrincipal.xhtml" />
 	</ui:define>
@@ -15,27 +15,95 @@
 		<ui:include src="/includes/menuPrincipal2.xhtml" />
 	</ui:define>
 -->
+	<style type="text/css">
+.ui-datatable .ui-datatable-header {
+	height: 45px !important;
+}
+</style>
 	<ui:define name="conteudo">
 		<h:form id="frmFabListagem">
+
+			<p:toolbar>
+				<f:facet name="left">
+					<p:commandButton type="button" value="New" icon="ui-icon-document" />
+
+					<p:commandButton type="button" value="Open"
+						icon="ui-icon-folder-open" />
+
+					<span class="ui-separator"> <span
+						class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton type="button" title="Save" icon="ui-icon-disk" />
+					<p:commandButton type="button" title="Delete" icon="ui-icon-trash" />
+					<p:commandButton type="button" title="Print" icon="ui-icon-print" />
+				</f:facet>
+
+				<f:facet name="right">
+					<p:menuButton value="Options">
+						<p:menuitem value="Save"
+							 icon="ui-icon-disk" />
+						<p:menuitem value="Update"
+							 icon="ui-icon-arrowrefresh-1-w" />
+						<p:menuitem value="Delete" 
+							ajax="false" icon="ui-icon-close" />
+						<p:menuitem value="Homepage" url="http://www.primefaces.org"
+							icon="ui-icon-extlink" />
+					</p:menuButton>
+				</f:facet>
+
+			</p:toolbar>
+
 			<p:dataTable id="tblFabricante" widgetVar="tabelaFab"
 				emptyMessage="Nenhum registro encontrado"
 				value="#{MBFabricante.itens}" var="item"
 				filteredValue="#{MBFabricante.itensFiltrados}" paginator="true"
-				rows="8" styleClass="table">
+				paginatorPosition="bottom" rows="10"
+				selection="#{MBFabricante.fabricante}" selectionMode="single"
+				rowKey="#{item.codigo}" styleClass="table">
 
+				<!--  
 				<f:facet name="header">
-					Fabricante - Listagem
+
+					<p:commandButton icon="ui-icon-document" value="Novo"
+						actionListener="#{MBFabricante.prepararNovo}"
+						oncomplete="PF('dlgFabNovo').show();"
+						update=":frmFabNovo:pnlFabNovo" />
+
+					<p:commandButton icon="ui-icon-trash" value="Excluir"
+						oncomplete="PF('dlgFabExcluir').show();"
+						update=":frmFabExcluir:pnlFabExcluir" title="Excluir um registro">
+
+						<f:setPropertyActionListener target="#{MBFabricante.fabricante}"
+							value="#{MBFabricante.fabricante}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-pencil" value="Editar"
+						oncomplete="PF('dlgFabEditar').show();"
+						update=":frmFabEditar:pnlFabEditar" title="Alterar um registro">
+
+						<f:setPropertyActionListener target="#{MBFabricante.fabricante}"
+							value="#{MBFabricante.fabricante}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-document" value="Fechar"
+						actionListener="#{MBFabricante.prepararNovo()}"
+						oncomplete="PF('dlgFabNovo').hide();"
+						update=":frmFabNovo:pnlFabNovo" style="float:right" />
+
 				</f:facet>
+				-->
 
 				<p:column headerText="Código" sortBy="#{item.codigo}" width="10%">
 					<p:outputLabel value="#{item.codigo}" />
 				</p:column>
 
-				<p:column headerText="Descrição" sortBy="#{item.descricao}"
-					filterBy="#{item.descricao}">
+				<p:column headerText="Descrição" sortBy="#{item.descricao}">
+					<!-- filterBy="#{item.descricao}"-->
 					<p:outputLabel value="#{item.descricao}" />
 				</p:column>
 
+				<!-- 
 				<p:column headerText="Opções" width="11%">
 
 					<p:commandButton icon="ui-icon-trash"
@@ -63,13 +131,28 @@
 					</p:commandButton>
 
 				</p:column>
+				
+				-->
 
+				<!--  
 				<f:facet name="footer">
 					<p:commandButton value="Novo"
 						actionListener="#{MBFabricante.prepararNovo()}"
 						oncomplete="PF('dlgFabNovo').show();"
 						update=":frmFabNovo:pnlFabNovo" />
+
+					<p:commandButton icon="ui-icon-trash"
+						oncomplete="PF('dlgFabExcluir').show();"
+						update=":frmFabExcluir:pnlFabExcluir" title="Excluir um registro">
+
+						<f:setPropertyActionListener target="#{MBFabricante.fabricante}"
+							value="#{MBFabricante.itens}" />
+					</p:commandButton>
+
 				</f:facet>
+				-->
+
+
 			</p:dataTable>
 		</h:form>
 
