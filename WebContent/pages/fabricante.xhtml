@@ -23,31 +23,38 @@
 	<ui:define name="conteudo">
 		<h:form id="frmFabListagem">
 
+
+			<p:panel id="pnlFabTit" header="FABRICANTES"
+				style="margin-bottom:2px" />
 			<p:toolbar>
 				<f:facet name="left">
-					<p:commandButton type="button" value="New" icon="ui-icon-document" />
-
-					<p:commandButton type="button" value="Open"
-						icon="ui-icon-folder-open" />
+					<p:commandButton value="Novo" icon="ui-icon-document"
+						actionListener="#{MBFabricante.prepararNovo}"
+						oncomplete="PF('dlgFabNovo').show();"
+						update=":frmFabNovo:pnlFabNovo" title="Inserir um novo registro" />
 
 					<span class="ui-separator"> <span
 						class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
-					<p:commandButton type="button" title="Save" icon="ui-icon-disk" />
-					<p:commandButton type="button" title="Delete" icon="ui-icon-trash" />
-					<p:commandButton type="button" title="Print" icon="ui-icon-print" />
+					<p:commandButton title="Editar" icon="ui-icon-pencil"
+						oncomplete="PF('dlgFabEditar').show();"
+						update=":frmFabEditar:pnlFabEditar" />
+
+					<p:commandButton title="Excluir" icon="ui-icon-trash"
+						oncomplete="PF('dlgFabExcluir').show();"
+						update=":frmFabExcluir:pnlFabExcluir" />
+
+					<p:commandButton type="button" title="Imprimir"
+						icon="ui-icon-print" />
+
 				</f:facet>
 
+
 				<f:facet name="right">
-					<p:menuButton value="Options">
-						<p:menuitem value="Save"
-							 icon="ui-icon-disk" />
-						<p:menuitem value="Update"
-							 icon="ui-icon-arrowrefresh-1-w" />
-						<p:menuitem value="Delete" 
-							ajax="false" icon="ui-icon-close" />
-						<p:menuitem value="Homepage" url="http://www.primefaces.org"
+					<p:menuButton value="Opções">
+						<p:menuitem value="Homepage"
+							url="http://localhost:8080/SysDrogaria/pages/index.html"
 							icon="ui-icon-extlink" />
 					</p:menuButton>
 				</f:facet>
@@ -98,8 +105,7 @@
 					<p:outputLabel value="#{item.codigo}" />
 				</p:column>
 
-				<p:column headerText="Descrição" sortBy="#{item.descricao}">
-					<!-- filterBy="#{item.descricao}"-->
+				<p:column headerText="Descrição" sortBy="#{item.descricao}" filterBy="#{item.descricao}">
 					<p:outputLabel value="#{item.descricao}" />
 				</p:column>
 
@@ -160,11 +166,28 @@
 			resizable="false" modal="true" appendTo="@(body)"
 			header="Fabricante - Novo">
 			<h:form id="frmFabNovo">
-				<h:panelGrid id="pnlFabNovo" columns="2">
+				<h:panelGrid id="pnlFabNovo" columns="4">
+
 					<h:outputLabel for="txtFabNovo" value="Descrição" />
 					<h:inputText id="txtFabNovo" size="30" maxlength="40"
 						value="#{MBFabricante.fabricante.descricao}" required="true"
 						requiredMessage="Campo Descrição obrigatório" />
+
+					<h:outputLabel for="EndFabNovo" value="Endereço" />
+					<h:inputText id="EndFabNovo" size="50" maxlength="50" />
+
+					<h:outputLabel for="BaiFabNovo" value="Bairro" />
+					<h:inputText id="BaiFabNovo" size="30" maxlength="30" />
+
+					<h:outputLabel for="CidFabNovo" value="Cidade" />
+					<h:inputText id="CidFabNovo" size="40" maxlength="40" />
+
+					<h:outputLabel for="NumFabNovo" value="Número" />
+					<h:inputText id="NumFabNovo" size="10" maxlength="10" />
+
+					<p:outputLabel for="DtaCadastro" value="Data de Cadastro:" />
+					<p:calendar locale="pt"	pattern="dd/MM/yyyy" id="DtaCadastro" value="#{calendarBean.data}" effect="fold" />
+
 
 				</h:panelGrid>
 
