@@ -26,7 +26,9 @@
 
 			<p:panel id="pnlFabTit" header="FABRICANTES"
 				style="margin-bottom:2px" />
+
 			<p:toolbar>
+
 				<f:facet name="left">
 					<p:commandButton value="Novo" icon="ui-icon-document"
 						actionListener="#{MBFabricante.prepararNovo}"
@@ -45,11 +47,10 @@
 						oncomplete="PF('dlgFabExcluir').show();"
 						update=":frmFabExcluir:pnlFabExcluir" />
 
-					<p:commandButton type="button" title="Imprimir"
+					<p:commandButton title="Imprimir" styleClass="classe"
 						icon="ui-icon-print" />
 
 				</f:facet>
-
 
 				<f:facet name="right">
 					<p:menuButton value="Opções">
@@ -105,7 +106,8 @@
 					<p:outputLabel value="#{item.codigo}" />
 				</p:column>
 
-				<p:column headerText="Descrição" sortBy="#{item.descricao}" filterBy="#{item.descricao}">
+				<p:column headerText="Descrição" styleClass="dsc_tit cls-input" sortBy="#{item.descricao}"
+					filterBy="#{item.descricao}">
 					<p:outputLabel value="#{item.descricao}" />
 				</p:column>
 
@@ -186,7 +188,8 @@
 					<h:inputText id="NumFabNovo" size="10" maxlength="10" />
 
 					<p:outputLabel for="DtaCadastro" value="Data de Cadastro:" />
-					<p:calendar locale="pt"	pattern="dd/MM/yyyy" id="DtaCadastro" value="#{calendarBean.data}" effect="fold" />
+					<p:calendar locale="pt" pattern="dd/MM/yyyy" id="DtaCadastro"
+						value="#{calendarBean.data}" effect="fold" />
 
 
 				</h:panelGrid>

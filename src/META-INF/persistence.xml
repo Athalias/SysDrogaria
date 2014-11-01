@@ -5,6 +5,7 @@
 <provider>org.hibernate.ejb.HibernatePersistence</provider>
 <class>br.com.Drogaria.Domain.FabricanteDM</class>
 <class>br.com.Drogaria.Domain.ProdutoDM</class>
+<class>br.com.Drogaria.Domain.UsuarioDM</class>
 <properties>
 <!--  dados da conexao  -->
 <!--   propriedades do hibernate  -->
