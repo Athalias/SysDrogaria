@@ -81,7 +81,7 @@
 				</f:facet>
 			</p:dataTable>
 		</h:form>
-
+		
 		<p:dialog widgetVar="dlgProdNovo" closable="false" draggable="false"
 			resizable="false" modal="true" appendTo="@(body)"
 			header="Produtos - Novo">
@@ -105,12 +105,13 @@
 
 
 					<h:panelGroup>
+						
 						<p:autoComplete id="fabricante" var="fab"
 							value="#{MBProduto.produtos.codigoFabricante}" itemValue="#{fab}"
 							minQueryLength="3"
 							itemLabel="#{fab.descricao}" converter="TabConverter"
 							completeMethod="#{MBProduto.completaNome}" effect="fade">
-							<p:ajax update=":frmProdListagem:tblProduto :msgGlobal " listener="#{MBProduto.completaNome}"/>
+							<!--  <p:ajax event="change" update=":frmProdListagem:tblProduto :msgGlobal " listener="#{MBProduto.completaNome}"/>-->
 						</p:autoComplete>
 						<p:watermark value="Pesquise pelo nome" for="fabricante" />
 					</h:panelGroup>

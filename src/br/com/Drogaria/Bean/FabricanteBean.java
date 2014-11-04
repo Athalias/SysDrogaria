@@ -85,4 +85,9 @@ public class FabricanteBean {
 		JSFUtil.addMensagemSucesso("Registro alterado com sucesso");
 	}
 	
+	public void mensagem(){
+		
+		JSFUtil.addMensagemSucesso("Registro salvo com sucesso!");
+	}
+	
 }

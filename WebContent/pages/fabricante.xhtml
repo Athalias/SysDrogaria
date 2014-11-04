@@ -168,8 +168,8 @@
 			resizable="false" modal="true" appendTo="@(body)"
 			header="Fabricante - Novo">
 			<h:form id="frmFabNovo">
+				
 				<h:panelGrid id="pnlFabNovo" columns="4">
-
 					<h:outputLabel for="txtFabNovo" value="Descrição" />
 					<h:inputText id="txtFabNovo" size="30" maxlength="40"
 						value="#{MBFabricante.fabricante.descricao}" required="true"
@@ -191,7 +191,6 @@
 					<p:calendar locale="pt" pattern="dd/MM/yyyy" id="DtaCadastro"
 						value="#{calendarBean.data}" effect="fold" />
 
-
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
@@ -202,6 +201,7 @@
 					<p:commandButton value="Cancelar"
 						oncomplete="PF('dlgFabNovo').hide();" />
 				</h:panelGrid>
+			
 			</h:form>
 		</p:dialog>
 
