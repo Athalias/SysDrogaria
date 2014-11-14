@@ -8,6 +8,7 @@
 
 <ui:composition template="/templates/modeloGeralv2.xhtml">
 	<ui:define name="conteudo">
+		<f:event listener="#{MBFabricante.prepararPesquisa}" type="preRenderView"/>
 		<h:form>
 			<p:toolbar>
 				<f:facet name="left">
@@ -19,14 +20,18 @@
 				<p:inputText maxlength="50" size="30" />
 				<p:commandButton value="Buscar" />
 				<p:commandButton value="Novo"
-					action="/pages/fabricanteCadastrov2.xhtml?faces-redirect=true"
-					actionListener="#{MBFabricante.prepararNovo()}" />
+					action="/pages/fabricanteCadastrov2.xhtml?faces-redirect=true" />
 			</h:panelGrid>
 
-			<p:dataTable emptyMessage="Nenhum registro encontrado">
+			<p:dataTable value="#{MBFabricante.itens }"
+				filteredValue="#{MBFabricante.itensFiltrados}" var="fabricante"
+				emptyMessage="Nenhum registro encontrado" rows="5" paginator="true" paginatorPosition="bottom">
 				<p:column headerText="Código">
+					<h:outputText value="#{fabricante.codigo}" />
 				</p:column>
-				<p:column headerText="Descrição">
+				<p:column filterBy="#{fabricante.descricao}"
+					sortBy="#{fabricante.descricao}" headerText="Descrição">
+					<h:outputText value="#{fabricante.descricao}" />
 				</p:column>
 				<p:column headerText="Opções">
 				</p:column>

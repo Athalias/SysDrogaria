@@ -22,6 +22,9 @@ public class FabricanteBean {
 	private List<FabricanteDM> itensFiltrados;
 
 	public FabricanteDM getFabricante() {
+		if(fabricante == null){
+			fabricante = new FabricanteDM();	
+		}
 		return fabricante;
 	}
 
@@ -45,7 +48,7 @@ public class FabricanteBean {
 		this.itensFiltrados = itensFiltrados;
 	}
 
-	@PostConstruct
+	//@PostConstruct
 	public void prepararPesquisa() {
 		FabricanteSelect fbs = new FabricanteSelect();
 		itens = fbs.listar();
@@ -55,7 +58,7 @@ public class FabricanteBean {
 		fabricante = new FabricanteDM();
 	}
 
-	public void novo() {
+	/*public void novo() {
 		FabricanteRP rp = new FabricanteRP();
 		rp.Insert(fabricante);
 
@@ -63,6 +66,17 @@ public class FabricanteBean {
 		itens = fbs.listar();
 
 		JSFUtil.addMensagemSucesso("Registro salvo com Sucesso!");
+	}*/
+	
+	public void novo(){
+		FabricanteRP rp = new FabricanteRP();
+		rp.Insert(fabricante);
+		fabricante = new FabricanteDM();
+		JSFUtil.addMensagemSucesso("Registro salvo com sucesso!");
+	}
+	
+	public void limpar(){
+		fabricante = new FabricanteDM();
 	}
 
 	public void excluir() {

@@ -28,6 +28,7 @@ public abstract class GenericRepo<T> {
 		em.persist(entity);
 		T entityInsert = entity;
 		em.getTransaction().commit();
+		em.close();
 		return entityInsert; 
 	}
 	
@@ -35,6 +36,7 @@ public abstract class GenericRepo<T> {
 		em.getTransaction().begin();
 		T entityUpdate = em.merge(entity);
 		em.getTransaction().commit();
+		em.close();
 		return entityUpdate;
 	}	
 	
@@ -43,6 +45,7 @@ public abstract class GenericRepo<T> {
 		T entityDelete = em.merge(entity);
 		em.remove(entityDelete);
 		em.getTransaction().commit();
+		em.close();
 	}
 	
 	public List<T> Select() {

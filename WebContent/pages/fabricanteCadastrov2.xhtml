@@ -9,32 +9,60 @@
 <ui:composition template="/templates/modeloGeralv2.xhtml">
 	<ui:define name="conteudo">
 
-		<h:form>
+		<h:form id="frmCadFab">
 
-			<p:toolbar>
+			<!--  	<p:toolbar>
 				<f:facet name="left">
 					<h:outputText value="Fabricantes" />
 				</f:facet>
 			</p:toolbar>
+			-->
 
-			<h:panelGrid columns="2">
+
+			<!--  <h:panelGrid id="pnlCadFab" columns="2">
 				<p:outputLabel value="Código:" />
 				<p:inputText size="10" readonly="true" />
 				<p:outputLabel value="Descrição:" />
-				<p:inputText maxlength="50" size="30"
-					 />
+				<p:inputText maxlength="50" size="30" value="#{MBFabricante.fabricante.descricao}"/>
 			</h:panelGrid>
+			-->
 
-			<h:panelGrid columns="3">
-				<p:commandButton value="Novo" />
-				<p:commandButton value="Salvar"
-					/>
-				<p:commandButton value="Voltar"
-					action="/pages/fabricantePesquisav2.xhtml?faces-redirect=true" />
-			</h:panelGrid>
+				<h3 style="margin-top:0;margin-left:8px">Fabricantes</h3>
+			
+				<p:tabView id="pnlCadFabl">
+					<p:tab title="Dados principais">
+						<h:panelGrid columns="2">
+							<p:outputLabel value="Código:" />
+							<p:outputLabel value="Descrição:" />
+						</h:panelGrid>
 
+						<h:panelGrid id="pnlCadFabe" columns="2">
+							<p:inputText size="7" readonly="true" />
+							<p:inputText maxlength="50" size="40"
+								value="#{MBFabricante.fabricante.descricao}"
+								style="margin-left: 5px" />
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Endereços">
+					</p:tab>
+					<p:tab title="Dados Complementares">
+					</p:tab>
+				</p:tabView>
+
+
+			<p:panel>
+				<h:panelGrid columns="3">
+					<p:commandButton value="Novo"
+						actionListener="#{MBFabricante.limpar}"
+						update=":frmCadFab:pnlCadFabl" />
+					<p:commandButton value="Salvar"
+						actionListener="#{MBFabricante.novo}"
+						update=":msgGlobal :frmCadFab:pnlCadFabl" />
+					<p:commandButton value="Voltar"
+						action="/pages/fabricantePesquisav2.xhtml?faces-redirect=true" />
+				</h:panelGrid>
+			</p:panel>
 		</h:form>
-
 	</ui:define>
 </ui:composition>
 
