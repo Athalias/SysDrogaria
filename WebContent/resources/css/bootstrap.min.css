@@ -2728,9 +2728,9 @@ output {
 .form-control {
 	display: block;
 	width: 100%;
-	height: 25px;
+	height: 28px;
 	padding: 6px 12px;
-	font-size: 11px;
+	font-size: 12px;
 	line-height: 1.42857143;
 	color: #555;
 	background-color: #fff;
@@ -3251,13 +3251,14 @@ textarea.input-lg, textarea.form-group-lg .form-control, select[multiple].input-
 	background-color: #5cb85c;
 	border-color: #4cae4c;
 	margin-right: 30px;
-	height: 25px;
+	height: 28px;
+	width: 60px;
 	font-size: 11px
 }
 
 .btn-success:hover, .btn-success:focus, .btn-success.focus, .btn-success:active,
 	.btn-success.active, .open>.dropdown-toggle.btn-success {
-	color: #fff;
+	color: #ffffff;
 	background-color: #449d44;
 	border-color: #398439
 }
@@ -3279,12 +3280,12 @@ textarea.input-lg, textarea.form-group-lg .form-control, select[multiple].input-
 }
 
 .btn-success .badge {
-	color: #5cb85c;
-	background-color: #fff
+	color: #ffffff;
+	background-color: #ffffff
 }
 
 .btn-info {
-	color: #fff;
+	color: #ffffff;
 	background-color: #5bc0de;
 	border-color: #46b8da
 }
@@ -5530,7 +5531,8 @@ border-radius
 }
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-	border-color: #101010
+	border-color: #101010;
+	height: 40px
 }
 
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover,
@@ -7801,4 +7803,11 @@ button.close {
 	.hidden-print {
 		display: none !important
 	}
+}
+
+.textos{
+	
+	margin-left: 200px;
+	margin-top: 500px;
+	font-size: 12px;
 }

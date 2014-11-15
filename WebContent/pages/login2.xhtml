@@ -1,58 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<!-- <link rel="icon" href="../../favicon.ico"> -->
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<!-- <link rel="icon" href="../../favicon.ico"> -->
 
 
-<title>Escola de MÃºsica e AdoraÃ§Ã£o Verbo da Vida</title>
+	<title>Escola de Música e Adoração Verbo da Vida</title>
 
-<!-- Bootstrap core CSS -->
-<link href="Resources/css/bootstrap.min.css" rel="stylesheet" />
+	<!-- Bootstrap core CSS -->
+	<link href="Resources/css/bootstrap.min.css" rel="stylesheet" />
 
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-<script src="../resources/js/ie-emulation-modes-warning.js"></script>
+	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+	<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+	<script src="../resources/js/ie-emulation-modes-warning.js"></script>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<!-- Custom styles for this template -->
-<link href="Resources/css/carousel.css" rel="stylesheet" />
-</head>
+	<!-- Custom styles for this template -->
+	<link href="Resources/css/carousel.css" rel="stylesheet" />
+</h:head>
 <!-- NAVBAR
 ================================================== -->
-<body>
+<h:body>
 	<div class="navbar-wrapper">
 		<div class="container">
 
 			<nav class="navbar navbar-inverse navbar-static-top"
 				role="navigation">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed"
-							data-toggle="collapse" data-target="#navbar"
-							aria-expanded="false" aria-controls="navbar">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="#">Emavv</a>
-					</div>
-					<div id="navbar" class="navbar-collapse collapse">
-						<ul class="nav navbar-nav">
-							<li class="active"><a href="#">Home</a></li>
-							<li><a href="#about">Sobre nÃ³s</a></li>
-							<li><a href="#contact">Contato</a></li>
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Emavv</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#about">Sobre nós</a></li>
+						<li><a href="#contact">Contato</a></li>
 
-							<!-- <li class="dropdown">
+						<!-- <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Action</a></li>
@@ -66,32 +71,73 @@
                 </li>
               -->
 
-						</ul>
+					</ul>
 
-						<ul class="nav navbar-nav navbar-right">
-							<div id="navbar" class="navbar-collapse collapse">
-								<form class="navbar-form navbar-right" role="form">
-									<div class="form-group">
-										<input type="text" placeholder="Email" class="form-control" />
-									</div>
-									<div class="form-group">
-										<input type="password" placeholder="Password"
-											class="form-control" />
-									</div>
-									<button type="submit" class="btn btn-success" ><a href="faces/pages/principalv2.xhtml">Entrar</a></button>
-								</form>
-							</div>
-							<!--/.navbar-collapse -->
-						</ul>
-					</div>
-
-
-
+					<ul class="nav navbar-nav navbar-right">
+						<div id="navbar" class="navbar-collapse collapse">
+							
+							<p:growl id="msgGlobal2" life="3000"/>
+							<h:form class="navbar-form navbar-right" role="form">
+								<div class="form-group">
+									<!-- <input type="text" placeholder="Email" class="form-control" /> -->
+									<h:inputText id="txtUsuario"
+										value="#{autenticacaoBean.usuarioLogado.login}" size="20"
+										maxlength="20" styleClass="form-control" />
+								</div>
+								
+								<div class="form-group">
+									<!--<input type="password" placeholder="Password"class="form-control" />-->
+									<h:inputText id="txtSenha"
+										value="#{autenticacaoBean.usuarioLogado.senha}" size="20"
+										maxlength="20" styleClass="form-control" />
+								</div>
+								<!--  <button type="submit" class="btn btn-success" ><a href="faces/pages/principalv2.xhtml">Entrar</a></button>-->
+				
+								<p:commandButton value="Entrar" styleClass="btn btn-success" update=":msgGlobal2"
+									actionListener="#{autenticacaoBean.autenticar}"
+									oncomplete="handleLoginRequest(xhr, status, args);" />
+									
+							</h:form>
+							
+							<a href="" class="textos">Esqueci minha senha</a>
+						</div>
+						
+						<!--/.navbar-collapse -->
+					</ul>
 				</div>
+				
+				
+		<!--  		<script type="text/javascript">
+    function abrirPagina(){
+        
+            location.href="http://localhost:8080/SysDrogaria/faces/pages/principalv2.xhtml";
+        }-->
+
+    <script type="text/javascript">
+    function handleLoginRequest(xhr, status, args) {
+        if(args.validationFailed || !args.loggedIn) {
+        	//location.href="http://localhost:8080/SysDrogaria/faces/pages/index.html";
+        	location.reload("http://localhost:8080/SysDrogaria");
+        }
+        else {
+           // PF('dlg').hide();
+            location.href="http://localhost:8080/SysDrogaria/faces/pages/principalv2.xhtml";
+            //$('#loginLink').fadeOut();
+        }
+    }
+</script>
+
+
+
+			</div>
+			
 			</nav>
 
 		</div>
+		
 	</div>
+	
+	
 
 
 	<!-- Carousel
@@ -114,7 +160,8 @@
 				<div class="container">
 					<div class="carousel-caption">
 						<p>
-							<a class="btn btn-lg btn-primary" href="#" role="button">Matricule-se jÃ¡</a>
+							<a class="btn btn-lg btn-primary" href="#" role="button">Matricule-se
+								já</a>
 						</p>
 					</div>
 				</div>
@@ -294,12 +341,12 @@
 
 		<!-- FOOTER -->
 		<footer>
-			<p class="pull-right">
-				<a href="#">Back to top</a>
-			</p>
-			<p>
-				2014 Athalias, Java Developer <a href="#">Privacy</a> <a href="#">Terms</a>
-			</p>
+		<p class="pull-right">
+			<a href="#">Back to top</a>
+		</p>
+		<p>
+			2014 Athalias, Java Developer <a href="#">Privacy</a> <a href="#">Terms</a>
+		</p>
 		</footer>
 
 	</div>
@@ -315,5 +362,5 @@
 	<script src="resources/js/docs.min.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="resources/js/ie10-viewport-bug-workaround.js"></script>
-</body>
+</h:body>
 </html>
